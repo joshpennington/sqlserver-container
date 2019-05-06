@@ -1,0 +1,21 @@
+version: '2'
+
+services:
+  sqlserver:
+    container_name: dockernet-sqlserver
+    image: microsoft/mssql-server-linux:latest
+    ports:
+      - "1433:1433"
+    environment:
+      MSSQL_PID: Developer
+      ACCEPT_EULA: 
+      SA_PASSWORD: 
+    volumes:
+      - mssqldata:/var/opt/mssql
+networks:
+  default:
+    external:
+      name: dockernet
+volumes:
+  mssqldata:
+    driver: "local"
